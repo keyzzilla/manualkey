@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATOR.BIO | Keyzzilla Terminal</title>
+    <style>
+        :root {
+            --kz-orange: #ff4d00;
+            --kz-bg: #0a0a0a;
+            --kz-card: #141414;
+            --kz-text: #f0f0f0;
+            --kz-dim: #999;
+            --kz-border: #222;
+            --kz-glow: rgba(255, 77, 0, 0.2);
+        }
+
+        body { 
+            background-color: var(--kz-bg); 
+            color: var(--kz-text); 
+            font-family: 'Courier New', monospace;
+            margin: 0; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 800px; margin: auto; padding: 40px 20px; }
+
+        header {
+            border-bottom: 2px solid var(--kz-orange);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--kz-card);
+        }
+
+        .db-tag {
+            font-weight: bold;
+            color: var(--kz-orange);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+
+
+        .bio-section {
+            background: var(--kz-card);
+            border: 1px solid var(--kz-border);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .bio-section::before {
+            content: "DATA_FILE: CREATOR_INFO";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--kz-bg);
+            padding: 0 10px;
+            font-size: 0.75rem;
+            color: var(--kz-dim);
+        }
+
+        .highlight { color: var(--kz-orange); font-weight: bold; }
+
+        .profile-header {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--kz-orange);
+            object-fit: cover;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .stat-item { font-size: 0.9rem; }
+        .stat-label { color: var(--kz-dim); }
+
+        .donate-widget {
+            margin-top: 40px;
+            border: 1px dashed var(--kz-orange);
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 77, 0, 0.05);
+        }
+
+        .donate-widget h3 {
+            margin-top: 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-back {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--kz-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .nav-back:hover { color: var(--kz-orange); }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.7rem;
+            color: var(--kz-dim);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="db-tag">[ CREATOR_ARCHIVE ]</div>
+        <div class="status-bar" style="font-size: 0.8rem; color: var(--kz-orange); display: flex; gap: 20px;">
+            <span>ID: 1</span>
+            <span>LOC: NC</span>
+            <span>STATUS: ACTIVE</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="/" class="nav-back">< RETURN_TO_INDEX</a>
+
+    <div class="bio-section">
+        <div class="profile-header">
+            <img src="https://i.ibb.co/Hp13XsQT/image-10.png" alt="Keyzzilla" class="profile-pic">
+            <div>
+                <h2 style="margin:0">Keyzzilla</h2>
+                <p style="margin:5px 0; font-size:0.9rem" class="highlight">Founder of Team Monster, Keyzzilla.com, and ManualKey.org</p>
+            </div>
+        </div>
+
+        <p>I am a <span class="highlight">13-year-old</span> creator and competitive player. I first entered the digital space in 2016 through Minecraft and expanded into Fortnite in 2017.</p>
+        
+        <p>Currently, I am known as a <span class="highlight">pro token player</span> in Fortnite, frequently streaming live events and high-stakes matches against other players. Outside of competition, I lead <span class="highlight">Team Monster</span>, an Esports and Entertainment organization dedicated to illuminating potential.</p>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">EXP:</span> 10 Years (Video Games)
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">REACH:</span> 1,500+ YT Subs
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">ORG:</span> Team Monster (Founder)
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">BORN:</span> Sept 1st, 2012
+            </div>
+        </div>
+
+        <div class="donate-widget">
+            <h3>[ SUPPORT_THE_CREATOR ]</h3>
+            <p style="font-size: 0.8rem; margin-bottom: 15px;">Contributions help fund the Team Monster infrastructure and future projects.</p>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="keyzzilla" data-color="#ff4d00" data-emoji="⚡"  data-font="Courier" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+        </div>
+    </div>
+
+    <a href="https://manualkey.org" class="nav-back">< RETURN_TO_INDEX</a>
+
+    <footer>
+        <p>TERMINAL ACCESS GRANTED // KEYZZILLA BIOTECH & MEDIA</p>
+        <p>Published 2026-01-24 // SYSTEM_STABLE</p>
+    </footer>
+
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('keyzzilla', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Support me',
+    'floating-chat.donateButton.background-color': '#00b9fe',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+
+</body>
+</html>
