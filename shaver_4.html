@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Razor Set Shaver | ManualKey</title>
+    <style>
+        :root {
+            --kz-orange: #ff4d00;
+            --kz-bg: #0a0a0a;
+            --kz-card: #141414;
+            --kz-text: #f0f0f0;
+            --kz-dim: #999;
+            --kz-border: #222;
+            --kz-success: #00ff41;
+            --kz-glow: rgba(255, 77, 0, 0.2);
+        }
+
+        body { 
+            background-color: var(--kz-bg); 
+            color: var(--kz-text); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; 
+            padding-bottom: 100px; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        
+        header { 
+            border-bottom: 3px solid var(--kz-orange); 
+            padding-bottom: 25px; 
+            margin-bottom: 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            color: var(--kz-text);
+            font-size: 2.5rem;
+            text-decoration: none;
+            letter-spacing: 5px;
+            display: block;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .logo span { color: var(--kz-orange); }
+
+        .sys-info { font-family: monospace; color: var(--kz-dim); font-size: 0.8rem; margin-top: 5px; }
+        .live-status { color: var(--kz-success); font-family: monospace; font-size: 0.8rem; text-align: right; }
+
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .index-item {
+            background: var(--kz-card);
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--kz-dim);
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .index-item:hover { border-color: var(--kz-orange); color: var(--kz-orange); }
+
+        .module-list { display: grid; gap: 15px; }
+
+        .module { 
+            background: var(--kz-card); 
+            border: 1px solid var(--kz-border); 
+            border-radius: 4px; 
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        .module:hover { border-color: var(--kz-orange); box-shadow: 0 0 25px var(--kz-glow); }
+        .module.active { border-color: var(--kz-orange); border-left: 10px solid var(--kz-orange); }
+
+        .module-header { 
+            padding: 25px 35px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .module-header h2 { margin: 0; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; pointer-events: none; }
+        .tag { font-family: monospace; color: var(--kz-orange); font-size: 0.8rem; padding: 4px 10px; border: 1px solid var(--kz-orange); }
+
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #0d0d0d;
+        }
+        .module.active .module-content { max-height: 2500px; }
+
+        .inner { padding: 50px; border-top: 1px solid var(--kz-border); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+        h3 { color: var(--kz-orange); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; letter-spacing: 1px; }
+        p { color: #ccc; font-size: 1rem; margin-bottom: 25px; }
+
+        .tech-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .tech-table td { padding: 12px 0; border-bottom: 1px solid #222; font-family: monospace; font-size: 0.9rem; }
+        .label { color: var(--kz-dim); }
+        .val { color: var(--kz-orange); text-align: right; font-weight: bold; }
+
+        .dad-wisdom { 
+            background: rgba(0, 255, 65, 0.05); 
+            border: 1px solid var(--kz-success); 
+            padding: 25px; 
+            position: relative;
+            margin-top: 30px;
+        }
+        .dad-wisdom::before { 
+            content: "PRO_ADVICE"; 
+            position: absolute; 
+            top: -12px; 
+            left: 20px; 
+            background: #0d0d0d; 
+            color: var(--kz-success); 
+            padding: 0 10px; 
+            font-family: monospace; 
+            font-size: 0.75rem; 
+        }
+        .dad-wisdom p { color: var(--kz-success); margin: 0; font-style: italic; font-size: 0.9rem; }
+
+        footer { text-align: center; color: var(--kz-dim); padding: 100px 20px; border-top: 1px solid #222; font-size: 0.75rem; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+        
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--kz-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .nav-back:hover { color: var(--kz-orange); }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div style="display: flex; justify-content: flex-end; width:100%;">
+        <a href="/" class="nav-back">< RETURN_TO_INDEX</a>
+    </div>
+
+    <header>
+        <div>
+            <a href="https://manualkey.org" target="_blank" class="logo">MANUAL<span>KEY</span></a>
+            <div class="sys-info">PROJECT: SAFETY RAZOR SET SHAVER // FULL ASSEMBLY TERMINAL</div>
+        </div>
+        <div class="live-status">
+            [ LOGIC_READY ]<br>
+            [ CHASSIS_STABLE ]<br>
+            [ LOGGED: ACTIVE ]
+        </div>
+    </header>
+
+    <div class="index-grid">
+        <div class="index-item" onclick="openModule(0)">01. Product Overview</div>
+        <div class="index-item" onclick="openModule(1)">02. Initial Setup</div>
+        <div class="index-item" onclick="openModule(2)">03. Operation Guide</div>
+        <div class="index-item" onclick="openModule(3)">04. Maintenance</div>
+        <div class="index-item" onclick="openModule(4)">05. Troubleshooting</div>
+    </div>
+
+    <div class="module-list">
+
+        <div class="module" id="mod-0">
+            <div class="module-header" onclick="toggle(this)">
+                <h2>01. Product Overview</h2>
+                <span class="tag">INFO_1000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Theory of Operation</h3>
+                            <p>This document contains the complete factory instructions for the Safety Razor Set Shaver. It is designed to provide maximum efficiency and safety during operation. Please read all warnings before engaging power systems.</p>
+                            <table class="tech-table">
+                                <tr><td class="label">Product Line</td><td class="val">Personal Care</td></tr>
+                                <tr><td class="label">Status</td><td class="val">Active</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>Operator Manual</h3>
+                            <p>Verify all required parameters are loaded into memory before starting.</p>
+                            <div class="dad-wisdom">
+                                <p>"Don't skip the manual. Understanding the basic specs saves you hours of headaches later."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="mod-1">
+            <div class="module-header" onclick="toggle(this)">
+                <h2>02. Initial Setup</h2>
+                <span class="tag">INIT_2000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Assembly</h3>
+                            <p>Unbox the unit and verify all components are present against the parts list. Place the unit on a secure, clear surface.</p>
+                        </div>
+                        <div>
+                            <h3>Warnings</h3>
+                            <p>Ensure nothing blocks ventilation paths. Do not bypass grounding pins.</p>
+                            <div class="dad-wisdom">
+                                <p>"Measure twice, plug in once. An unbalanced setup will vibrate itself apart."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="mod-2">
+            <div class="module-header" onclick="toggle(this)">
+                <h2>03. Operation Guide</h2>
+                <span class="tag">EXEC_3000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Standard Use</h3>
+                            <p>Ensure the environment is clear of hazards before operation.</p>
+                            <table class="tech-table">
+                                <tr><td class="label">Duty Cycle</td><td class="val">Continuous</td></tr>
+                                <tr><td class="label">Thermal Limit</td><td class="val">Within Spec</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>Operator Limits</h3>
+                            <p>Familiarize yourself with the interface controls before active deployment. Halt operation immediately if unusual vibrations or odors are detected.</p>
+                            <div class="dad-wisdom">
+                                <p>"Listen to the machine. If it sounds like it's struggling, it probably is. Back off."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="mod-3">
+            <div class="module-header" onclick="toggle(this)">
+                <h2>04. Maintenance</h2>
+                <span class="tag">MAIN_4000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Routine Checks</h3>
+                            <p>Schedule a visual inspection every 90 days. Keep air vents clear and wipe down external chassis with appropriate mild solutions.</p>
+                        </div>
+                        <div>
+                            <h3>Deep Cleaning</h3>
+                            <p>Using improper solvents will void the warranty. Always unplug before touching internal mechanical parts.</p>
+                            <div class="dad-wisdom">
+                                <p>"Preventative maintenance is cheap. Repair parts are expensive. Don't be lazy."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" id="mod-4">
+            <div class="module-header" onclick="toggle(this)">
+                <h2>05. Troubleshooting</h2>
+                <span class="tag">ERR_5000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Common Faults</h3>
+                            <p>If the shaver fails to power on, ensure the primary connection is seated securely and the fuse has not bypassed.</p>
+                        </div>
+                        <div>
+                            <h3>Hard Reset</h3>
+                            <p>For advanced logic faults, disconnect power entirely and wait 5 minutes before resetting.</p>
+                            <div class="dad-wisdom">
+                                <p>"When in doubt, pull the plug, wait, and try again. Solves half the problems out there."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>RESOURCES MANAGED BY @KEYZZILLA <a href="/keyzz.html" class="creator-link" style="color: var(--kz-orange); text-decoration: none; margin-left: 10px; border: 1px solid var(--kz-orange); padding: 2px 8_px; font-size: 0.65rem; transition: 0.3s;">[ MEET_THE_CREATOR ]</a></p>
+        <p>MANUALKEY.ORG // SAFETY RAZOR SET SHAVER <br>
+        SYSTEM ARCHIVE</p>
+    </footer>
+</div>
+
+<script>
+    function toggle(header) {
+        const module = header.parentElement;
+        const isActive = module.classList.contains('active');
+        
+        document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
+        
+        if (!isActive) {
+            module.classList.add('active');
+            setTimeout(() => {
+                module.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300);
+        }
+    }
+
+    function openModule(index) {
+        const target = document.getElementById('mod-' + index);
+        const header = target.querySelector('.module-header');
+        toggle(header);
+    }
+</script>
+
+</body>
+</html>

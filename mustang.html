@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIV_MANUAL_ARCHIVE | Mustang 65</title>
+    <style>
+        :root {
+            --kz-orange: #ff4d00;
+            --kz-bg: #0a0a0a;
+            --kz-card: #141414;
+            --kz-text: #f0f0f0;
+            --kz-dim: #999;
+            --kz-glow: rgba(255, 77, 0, 0.3);
+        }
+
+        * { box-sizing: border-box; }
+        
+        body {
+            background-color: var(--kz-bg);
+            color: var(--kz-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            border-bottom: 2px solid var(--kz-orange);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--kz-card);
+        }
+
+        .db-tag {
+            font-weight: bold;
+            color: var(--kz-orange);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .manual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .manual-card {
+            background: var(--kz-card);
+            border: 1px solid #222;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .manual-card:hover {
+            border-color: var(--kz-orange);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+            transform: translateY(-5px);
+        }
+
+        .manual-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--kz-orange);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .manual-card:hover::before {
+            opacity: 1;
+        }
+
+        h2 { 
+            font-size: 1.3rem; 
+            margin: 0 0 1rem 0; 
+            color: #fff;
+            height: 3.2rem; 
+            overflow: hidden; 
+            text-transform: uppercase;
+        }
+
+        .card-description {
+            color: var(--kz-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-read {
+            margin-top: auto;
+            display: block;
+            text-align: center;
+            border: 1px solid var(--kz-orange);
+            padding: 12px;
+            text-decoration: none;
+            color: var(--kz-orange);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-read:hover {
+            background: var(--kz-orange);
+            color: #000;
+        }
+
+        footer {
+            margin-top: 5rem;
+            padding: 3rem;
+            font-size: 0.7rem;
+            color: var(--kz-dim);
+            text-align: center;
+            border-top: 1px solid #222;
+            background: var(--kz-card);
+        }
+
+        .creator-link {
+            color: var(--kz-orange);
+            text-decoration: none;
+            margin-left: 10px;
+            border: 1px solid var(--kz-orange);
+            padding: 2px 8px;
+            font-size: 0.65rem;
+            transition: 0.3s;
+        }
+
+        .creator-link:hover {
+            background: var(--kz-orange);
+            color: #000;
+        }
+
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--kz-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .nav-back:hover { color: var(--kz-orange); }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; }
+            .db-tag { margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="db-tag">[ MUSTANG_65_COMPLETE_ARCHIVE ]</div>
+        <div style="font-family: monospace; color: var(--kz-dim); font-size: 0.8rem;">TOTAL_SYSTEMS_LOADED</div>
+    </header>
+
+    <div class="container">
+        <a href="/" class="nav-back">< RETURN_TO_INDEX</a>
+        
+        <div class="manual-grid">
+            
+            <div class="manual-card">
+                <h2>BRAKES & WHEELS</h2>
+                <p class="card-description">Master cylinders, drum assemblies, and wheel mounting hardware.</p>
+                <a href="/assets/manuals/mustang1965/text/Brakes.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>FRONT SUSPENSION</h2>
+                <p class="card-description">Steering linkage, spindles, and shock absorber geometry.</p>
+                <a href="/assets/manuals/mustang1965/text/FrontSuspension.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>REAR AXLE</h2>
+                <p class="card-description">Differential carriers, drive shafts, and housing components.</p>
+                <a href="/assets/manuals/mustang1965/text/rear-axle.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>ENGINE SYSTEM</h2>
+                <p class="card-description">Internal block components, camshafts, and oil pump systems.</p>
+                <a href="/assets/manuals/mustang1965/text/engine.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>MANUAL TRANSMISSION</h2>
+                <p class="card-description">3 & 4-speed gearboxes, clutch linkage, and floor shifters.</p>
+                <a href="/assets/manuals/mustang1965/text/manual-transmission.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>AUTO TRANSMISSION</h2>
+                <p class="card-description">C4/FMX assemblies, selector mechanisms, and cooling lines.</p>
+                <a href="/assets/manuals/mustang1965/text/auto-transmission.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>COOLING SYSTEM</h2>
+                <p class="card-description">Radiators, water pumps, and grille ornamentation.</p>
+                <a href="/assets/manuals/mustang1965/text/cooling-system.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>FUEL SYSTEM</h2>
+                <p class="card-description">Carburetors, fuel pumps, tanks, and accelerator linkage.</p>
+                <a href="/assets/manuals/mustang1965/text/fuel-system.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>ELECTRICAL & IGNITION</h2>
+                <p class="card-description">Alternators, distributors, and wiring harness diagrams.</p>
+                <a href="/assets/manuals/mustang1965/text/ignition%20system.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>ACCESSORIES</h2>
+                <p class="card-description">Backup lamps, emergency flashers, and optional equipment.</p>
+                <a href="/assets/manuals/mustang1965/text/Accessories.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>BODY & FENDERS</h2>
+                <p class="card-description">Hoods, aprons, bumpers, and exterior trim components.</p>
+                <a href="/assets/manuals/mustang1965/text/Fenders.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>INTERIOR & TRIM</h2>
+                <p class="card-description">Seat assemblies, dash pads, and soft trim specifications.</p>
+                <a href="/assets/manuals/mustang1965/text/interior.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>HEATER & A/C</h2>
+                <p class="card-description">Air conditioning ducts, heater cores, and climate controls.</p>
+                <a href="/assets/manuals/mustang1965/text/heater-ac.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+            <div class="manual-card">
+                <h2>RADIO & LIGHTING</h2>
+                <p class="card-description">AM/FM systems, speakers, and headlamp configurations.</p>
+                <a href="/assets/manuals/mustang1965/text/radio.pdf" target="_blank" class="btn-read">ACCESS_DATA</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>RESOURCES MANAGED BY @KEYZZILLA <a href="/keyzz.html" class="creator-link">[ MEET_THE_CREATOR ]</a></p>
+        <p>ALL ASSETS POINTING TO: \assets\manuals\mustang1965\text // UNIV_ARCHIVE_VER_2.1</p>
+    </footer>
+
+</body>
+</html>

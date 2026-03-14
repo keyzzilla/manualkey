@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMUNE.SYS | Keyzzilla Biotech Terminal</title>
+    <style>
+        :root {
+            --kz-orange: #ff4d00;
+            --kz-bg: #0a0a0a;
+            --kz-card: #141414;
+            --kz-text: #f0f0f0;
+            --kz-dim: #999;
+            --kz-border: #222;
+            --kz-success: #00ff41;
+            --kz-glow: rgba(255, 77, 0, 0.2);
+        }
+
+        body { 
+            background-color: var(--kz-bg); 
+            color: var(--kz-text); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; 
+            padding-bottom: 100px; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        
+        header { 
+            border-bottom: 2px solid var(--kz-orange); 
+            padding: 1.5rem 2rem;
+            margin-bottom: 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: var(--kz-card);
+        }
+        
+        .db-tag {
+            font-weight: bold;
+            color: var(--kz-orange);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--kz-dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .nav-back:hover { color: var(--kz-orange); }
+
+
+
+        .intro-summary {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+        .intro-summary p { margin: 0; font-size: 1.1rem; color: var(--kz-text); font-style: italic; }
+
+        .module-list { display: grid; gap: 15px; }
+
+        .module { 
+            background: var(--kz-card); 
+            border: 1px solid var(--kz-border); 
+            border-radius: 4px; 
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        .module:hover { border-color: var(--kz-orange); box-shadow: 0 0 25px var(--kz-glow); }
+        .module.active { border-color: var(--kz-orange); border-left: 10px solid var(--kz-orange); }
+
+        .module-header { 
+            padding: 25px 35px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            pointer-events: none;
+        }
+        .module-header h2 { margin: 0; font-size: 1.1rem; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .tag { font-family: monospace; color: var(--kz-orange); font-size: 0.8rem; padding: 4px 10px; border: 1px solid var(--kz-orange); }
+
+        .module-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #0d0d0d;
+        }
+        .module.active .module-content { max-height: 1200px; }
+
+        .inner { padding: 50px; border-top: 1px solid var(--kz-border); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+        h3 { color: var(--kz-orange); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; letter-spacing: 1px; }
+        p { color: #ccc; font-size: 1rem; margin-bottom: 25px; }
+
+        .tech-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .tech-table td { padding: 12px 0; border-bottom: 1px solid #222; font-family: monospace; font-size: 0.9rem; }
+        .label { color: var(--kz-dim); }
+        .val { color: var(--kz-orange); text-align: right; font-weight: bold; }
+
+        .health-advice { 
+            background: rgba(0, 255, 65, 0.05); 
+            border: 1px solid var(--kz-success); 
+            padding: 25px; 
+            position: relative;
+            margin-top: 30px;
+        }
+        .health-advice::before { 
+            content: "HEALTH_TIP"; 
+            position: absolute; 
+            top: -12px; 
+            left: 20px; 
+            background: #0d0d0d; 
+            color: var(--kz-success); 
+            padding: 0 10px; 
+            font-family: monospace; 
+            font-size: 0.75rem; 
+        }
+        .health-advice p { color: var(--kz-success); margin: 0; font-size: 0.9rem; }
+
+        footer { text-align: center; color: var(--kz-dim); padding: 100px 20px; border-top: 1px solid #222; font-size: 0.75rem; letter-spacing: 2px; }
+
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="db-tag">[ PROJECT_BIOLOGICAL_DEFENSE_ARCHIVE ]</div>
+        <div class="live-status" style="color: var(--kz-success); font-family: monospace; font-size: 0.8rem; text-align: right;">
+            [ DEFENSE_ACTIVE ]<br>
+            [ HOST_STABLE ]
+        </div>
+    </header>
+
+    <div class="container">
+        <a href="/" class="nav-back">< RETURN_TO_INDEX</a>
+
+    <div class="intro-summary">
+        <p>The immune system is like a body's own personal defense team that works hard to fight off germs and keep you from getting sick. It uses special organs like your spleen and bone marrow to create white blood cells that act as tiny soldiers against bacteria and viruses. To keep it strong, you should eat healthy food, exercise, and get plenty of sleep so your body is always ready to protect you.</p>
+    </div>
+
+    <div class="module-list">
+
+        <div class="module" onclick="toggleModule(this)">
+            <div class="module-header">
+                <h2>01. Organs & Tissues</h2>
+                <span class="tag">ORG_9000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Hardware Components</h3>
+                            <p>The immune system relies on a specialized network of tissues to produce and train its defense cells.</p>
+                            <table class="tech-table">
+                                <tr><td class="label">Bone Marrow</td><td class="val">Blood Cell Production</td></tr>
+                                <tr><td class="label">Thymus</td><td class="val">T Cell Maturation</td></tr>
+                                <tr><td class="label">Spleen</td><td class="val">Blood Filtering</td></tr>
+                                <tr><td class="label">Tonsils</td><td class="val">Entryway Security</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>Function</h3>
+                            <p>Lymph nodes and vessels act as a filtration network that traps pathogens while housing your immune cells.</p>
+                            
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" onclick="toggleModule(this)">
+            <div class="module-header">
+                <h2>02. Lines of Defence</h2>
+                <span class="tag">DEF_2000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>1st Line: Barriers</h3>
+                            <p>External physical and chemical barriers like skin and mucous membranes physically block pathogens.</p>
+                            <table class="tech-table">
+                                <tr><td class="label">Skin</td><td class="val">Physical Block</td></tr>
+                                <tr><td class="label">Stomach Acid</td><td class="val">Chemical Kill</td></tr>
+                                <tr><td class="label">Saliva Enzymes</td><td class="val">Bacterial Dissolve</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>2nd Line: Internal</h3>
+                            <p>An internal response using specialized white blood cells attacks invaders that bypass the first line.</p>
+                            <div class="health-advice">
+                                <p>Stay hydrated to keep your protective mucus moist and avoid smoking to protect the tiny hairs that sweep germs out of your lungs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" onclick="toggleModule(this)">
+            <div class="module-header">
+                <h2>03. System Maintenance</h2>
+                <span class="tag">MAIN_5000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Standard Protocol</h3>
+                            <p>To enhance your immune system, incorporate nutrient-rich fruits, vegetables, and lean proteins while limiting saturated fats.</p>
+                            <table class="tech-table">
+                                <tr><td class="label">Sleep Target</td><td class="val">7-8 Hours</td></tr>
+                                <tr><td class="label">Weekly Exercise</td><td class="val">150 Minutes</td></tr>
+                                <tr><td class="label">Stress Control</td><td class="val">Required</td></tr>
+                            </table>
+                        </div>
+                        <div>
+                            <h3>The Role of Rest</h3>
+                            <p>Quality sleep is essential for protein repair and overall immune function. Establishing a consistent routine and avoiding alcohol or screens before bed improves rest quality.</p>
+                            <div class="health-advice">
+                                <p>Establish relaxation techniques like mindfulness or yoga to mitigate chronic stress, which can otherwise suppress immune function.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="module" onclick="toggleModule(this)">
+            <div class="module-header">
+                <h2>04. Medical Interventions</h2>
+                <span class="tag">MED_13000</span>
+            </div>
+            <div class="module-content">
+                <div class="inner">
+                    <div class="grid">
+                        <div>
+                            <h3>Vaccines & Memory</h3>
+                            <p>Vaccines train the immune system to recognize and defend against specific viruses and bacteria by introducing a harmless version of a germ.</p>
+                            
+
+
+                        </div>
+                        <div>
+                            <h3>Antibiotics</h3>
+                            <p>Antibiotics are medications designed to treat active bacterial infections by killing the bacteria or preventing multiplication. They are ineffective against viral illnesses like the flu.</p>
+                            <div class="health-advice">
+                                <p>The immune system stops working correctly when it is too weak or gets confused and starts attacking healthy parts of the body by mistake.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>RESOURCES MANAGED BY @KEYZZILLA <a href="/keyzz.html" class="creator-link" style="color: var(--kz-orange); text-decoration: none; margin-left: 10px; border: 1px solid var(--kz-orange); padding: 2px 8px; font-size: 0.65rem; transition: 0.3s;">[ MEET_THE_CREATOR ]</a></p>
+        <p>manualkey.org | immune.sys</p>
+    </footer>
+
+<script>
+    function toggleModule(moduleElement) {
+        const isActive = moduleElement.classList.contains('active');
+        
+        document.querySelectorAll('.module').forEach(m => {
+            m.classList.remove('active');
+        });
+        
+        if (!isActive) {
+            moduleElement.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>

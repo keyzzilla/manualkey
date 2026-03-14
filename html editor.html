@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ManualKey // Dev_Workspace_v2</title>
+    <style>
+        :root {
+            --kz-orange: #ff4d00;
+            --kz-bg: #0a0a0a;
+            --kz-card: #141414;
+            --kz-text: #f0f0f0;
+            --kz-dim: #999;
+            --kz-glow: rgba(255, 77, 0, 0.4);
+            --kz-border: #222;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--kz-bg);
+            color: var(--kz-text);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 30px;
+            background: var(--kz-bg);
+            border-bottom: 2px solid var(--kz-orange);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-weight: 900;
+            color: var(--kz-text);
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+        .logo span { color: var(--kz-orange); }
+
+        .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .btn {
+            background: var(--kz-card);
+            border: 1px solid var(--kz-border);
+            color: var(--kz-text);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn:hover:not(:disabled) { border-color: var(--kz-orange); color: var(--kz-orange); }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .btn-accent { background: var(--kz-orange); color: white; border: none; }
+        .btn-danger:hover { border-color: #ff4444; color: #ff4444; }
+
+        .workspace {
+            display: flex;
+            height: 75vh;
+            border-bottom: 2px solid var(--kz-border);
+        }
+
+        .pane { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .editor-pane { border-right: 2px solid var(--kz-border); }
+
+        .pane-label {
+            background: var(--kz-card);
+            padding: 10px 20px;
+            font-size: 10px;
+            color: var(--kz-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        textarea {
+            flex: 1;
+            background: var(--kz-bg);
+            color: #ccc;
+            padding: 25px;
+            border: none;
+            resize: none;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            outline: none;
+            line-height: 1.6;
+            caret-color: var(--kz-orange);
+        }
+
+        iframe { flex: 1; background: white; border: none; }
+
+        .manual-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .module {
+            background: var(--kz-card);
+            border-radius: 12px;
+            padding: 50px;
+            margin-bottom: 50px;
+            border: 1px solid var(--kz-border);
+            position: relative;
+        }
+
+        .module h2 { color: var(--kz-orange); font-size: 2.5rem; margin-bottom: 20px; }
+        .module h3 { margin-top: 30px; color: #fff; }
+        .module p { color: var(--kz-dim); font-size: 1.1rem; margin-bottom: 15px; }
+
+        .code-block {
+            background: #000;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #00ff9d;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+
+        .badge {
+            background: var(--kz-orange);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        #file-input { display: none; }
+
+        @media (max-width: 800px) {
+            .workspace { flex-direction: column; height: auto; }
+            .pane { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="https://manualkey.org" target="_blank" class="logo">MANUAL<span>KEY</span></a>
+    <div class="toolbar">
+        <input type="file" id="file-input" accept=".html">
+        <button class="btn" id="undo-btn" onclick="undo()">Undo</button>
+        <button class="btn" id="redo-btn" onclick="redo()">Redo</button>
+        <button class="btn btn-danger" onclick="clearAll()">Clear</button>
+        <button class="btn" onclick="document.getElementById('file-input').click()">Import</button>
+        <button class="btn" onclick="popOut()">Pop-Out</button>
+        <button class="btn btn-accent" onclick="downloadFile()">Download .HTML</button>
+    </div>
+</header>
+
+<div class="workspace">
+    <div class="pane editor-pane">
+        <div class="pane-label">
+            <span>Terminal_v2.0</span>
+            <span id="status-light" style="color: var(--kz-orange)">● SYNCED</span>
+        </div>
+        <textarea id="editor" spellcheck="false" placeholder="Write code here...">
+<div class="welcome">
+  <h1>MANUALKEY v2.0</h1>
+  <p>The system has been recalibrated. All buttons are active.</p>
+</div>
+
+<style>
+  body { background: #0a0a0a; color: white; display: grid; place-items: center; height: 90vh; margin: 0; font-family: sans-serif; }
+  .welcome { border: 2px solid #ff4d00; padding: 40px; text-align: center; box-shadow: 0 0 20px rgba(255,77,0,0.3); }
+  h1 { color: #ff4d00; font-size: 2.5rem; margin: 0; }
+</style></textarea>
+    </div>
+    <div class="pane">
+        <div class="pane-label">Live_Preview</div>
+        <iframe id="viewer"></iframe>
+    </div>
+</div>
+
+<div class="manual-section">
+    <div class="module">
+        <div class="badge">CHAPTER 1</div>
+        <h2>The Architecture of a Webpage</h2>
+        <p>Before writing code, you must understand the <b>DOM (Document Object Model)</b>. HTML is essentially a tree of branches.</p>
+        
+                
+        <h3>1. The Root (!DOCTYPE)</h3>
+        <p>Every file starts with <code>&lt;!DOCTYPE html&gt;</code>. This isn't a tag; it's a message to the browser saying: "Prepare for modern HTML5 rules".</p>
+
+        <h3>2. The Brain (Head)</h3>
+        <p>The <code>&lt;head&gt;</code> contains metadata. This is where you tell the browser things like the title of the tab or what language the site is in. You also put your <code>&lt;style&gt;</code> here.</p>
+
+        <h3>3. The Body</h3>
+        <p>This is where the user spends their time. Everything visible—text, images, videos—must be inside the <code>&lt;body&gt;</code> tags.</p>
+    </div>
+
+    <div class="module">
+        <div class="badge">CHAPTER 2</div>
+        <h2>Step-by-Step Mastery</h2>
+        <p>Follow this exact process to build a new component:</p>
+        
+        <h3>Step 1: Content First</h3>
+        <p>Write your raw text using <code>&lt;p&gt;</code> for paragraphs or <code>&lt;h1&gt;</code> for big titles.</p>
+        
+        <h3>Step 2: Grouping</h3>
+        <p>Wrap your related content in a <code>&lt;div&gt;</code>. Think of a <code>&lt;div&gt;</code> as an invisible box that holds items together.</p>
+
+        <h3>Step 3: Styling (CSS)</h3>
+        <p>Use the style section. For example, to center everything in your box, you would use: <code>text-align: center;</code>. To add space inside the box, use <code>padding</code>.</p>
+        
+        <div class="code-block">
+.my-box {
+  background-color: #141414;
+  border: 1px solid #ff4d00;
+  padding: 20px;
+  border-radius: 8px;
+}
+        </div>
+    </div>
+
+    <div class="module">
+        <div class="badge">CHAPTER 3</div>
+        <h2>How to Launch Your File</h2>
+        <p>To take what you made here and put it on your computer:</p>
+        <ol style="margin-left: 20px;">
+            <li>Click <b>Download .HTML</b>.</li>
+            <li>Go to your Downloads folder.</li>
+            <li>Right-click the file and "Open With" your browser (Chrome or Edge).</li>
+            <li><b>To Edit again:</b> Right-click the file and "Open With" Notepad or VS Code.</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+    const editor = document.getElementById('editor');
+    const viewer = document.getElementById('viewer');
+    const status = document.getElementById('status-light');
+    const undoBtn = document.getElementById('undo-btn');
+    const redoBtn = document.getElementById('redo-btn');
+
+    let history = [editor.value];
+    let historyStep = 0;
+
+    function saveState() {
+        if (historyStep < history.length - 1) {
+            history = history.slice(0, historyStep + 1);
+        }
+        history.push(editor.value);
+        historyStep++;
+        if (history.length > 50) {
+            history.shift();
+            historyStep--;
+        }
+        updateButtons();
+    }
+
+    function undo() {
+        if (historyStep > 0) {
+            historyStep--;
+            editor.value = history[historyStep];
+            update(true);
+        }
+    }
+
+    function redo() {
+        if (historyStep < history.length - 1) {
+            historyStep++;
+            editor.value = history[historyStep];
+            update(true);
+        }
+    }
+
+    function updateButtons() {
+        undoBtn.disabled = historyStep === 0;
+        redoBtn.disabled = historyStep === history.length - 1;
+    }
+
+    function update(skipHistory = false) {
+        status.innerText = "● SYNCING...";
+        const content = editor.value;
+        const iframeDoc = viewer.contentDocument || viewer.contentWindow.document;
+        
+        iframeDoc.open();
+        iframeDoc.write(content);
+        iframeDoc.close();
+        
+        setTimeout(() => { status.innerText = "● SYNCED"; }, 300);
+        
+        if (!skipHistory) {
+            saveState();
+        }
+        updateButtons();
+    }
+
+    function popOut() {
+        const blob = new Blob([editor.value], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+    }
+
+    function clearAll() {
+        if (confirm("Delete all code?")) {
+            editor.value = "";
+            update();
+        }
+    }
+
+    function downloadFile() {
+        const blob = new Blob([editor.value], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'manualkey-export.html';
+        a.click();
+    }
+
+    document.getElementById('file-input').addEventListener('change', function(e) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            editor.value = e.target.result;
+            update();
+        };
+        reader.readAsText(e.target.files[0]);
+    });
+
+    editor.addEventListener('input', () => {
+        clearTimeout(window.typingTimer);
+        window.typingTimer = setTimeout(update, 500);
+    });
+
+    window.onload = () => {
+        update(false);
+        updateButtons();
+    };
+</script>
+
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('keyzzilla', {
+    'type': 'widget',
+    'storageCode': 'X8X2182GCO',
+    'container': 'body',
+    'floating-chat.donateButton.text': 'Support Me',
+    'floating-chat.donateButton.background-color': '#ff4d00',
+    'floating-chat.donateButton.text-color': '#fff',
+    'z-index': '9999' 
+  });
+</script>
+
+</body>
+</html>
